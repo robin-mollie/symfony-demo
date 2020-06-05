@@ -34,4 +34,20 @@ class Kernel extends BaseKernel
         $routes->import('../config/{routes}/*.yaml');
         $routes->import('../config/{routes}.yaml');
     }
+    
+    public function getCacheDir()
+    {
+        if ($this->environment === 'prod') {
+            return sys_get_temp_dir();
+        }
+        return parent::getCacheDir();
+    }
+
+    public function getLogDir()
+    {
+        if ($this->environment === 'prod') {
+            return sys_get_temp_dir();
+        }
+        return parent::getLogDir();
+    }
 }
